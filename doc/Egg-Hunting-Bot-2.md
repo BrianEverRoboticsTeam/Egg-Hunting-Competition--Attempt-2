@@ -29,7 +29,7 @@ Navigation gave us a chance to guide our robot in a high efficient target search
 
 Successful target searching algorithm will help robots to collect points in the competition. Mostly, a robot won't have a second chance to find the same target within 5 minutes due to the size of the competition area. Therefore, good target searching algorithm should be able to prevent missing targets, meanwhile, helps a robot to gain more points within the same time duration. The higher points a robot gains, the higher chance it could win the game.
 
-Docking procedure will make our robot gains 1 to 3 points depends on how the quality of docking. This points seem like not so important compare to the points for successfully find a target. However, in a very close game, those few points could make different between winning or losing.
+Docking procedure will make our robot gains 3 to 9 points depends on the quality of docking. Unlike the attempt 1, this docking points are actually more important compare to the points for successfully finding a target. Therefore, docking procedure could obtain the most of the points from a round which affects a lots to the final competition grade. 
 
 To add up to those four skills of our robot, it should also able to perform as a finite state machine. By doing this, those four different skills and/or algorithms are able to coordinate with each other by translating between those four major states when the conditions of a certain state met. There are some other minor components, like the map for navigation, the control program for docking and undocking, etc, will be include in our approach.
 
