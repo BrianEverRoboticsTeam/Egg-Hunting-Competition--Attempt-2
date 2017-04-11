@@ -66,7 +66,11 @@ Localization details, parameters, etc.!!!!!!!!!!!!!!!!!!!
 
 Navigation parameters, etc.!!!!!!!!!!!!!!!!!!!!!!!!
 
-For docking procedure, we will need to obtain a pose of target when the robot is getting close enough to it. Then, a docking path will be calculated based on this pose data. We used two algorithms for two different visual target pose detection, one for AR Tag and another for University of Alberta emblem. specifically, we used the [ar_track_alvar](http://wiki.ros.org/ar_track_alvar) package, which available from ROS, to do the AR Tag pose detection. And for the University of Alberta emblem, we implemented a features matching algorithms (Fast key point detection and ORB descriptor) to match key points between the model emblem and an image frame. Once we got those matched key points, we calculate the pose data by using [solvePnP](http://docs.opencv.org/3.0-beta/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#solvepnp) function in openCV.
+For docking procedure, we will need to obtain a pose of target when the robot is getting close enough to it. Then, a docking path will be calculated based on this pose data. We used two algorithms for two different visual target pose detection, one for AR Tag and another for University of Alberta emblem. 
+
+For AR Tag detection, we created a template instead of directly using ar_track_alvar package because we found two problems of the package. One is it cannot detect AR Tags when Turtlebot moves too fast. The other one is it is too sensitive when AR Tag is far and edge-on, which affects navigation a lot. Therefore, after we using AR Tag template, Turtlebot can find AR Tags and do pre-docking at a desired position with side camera. Then the front camera will get a good pose with [ar_track_alvar](http://wiki.ros.org/ar_track_alvar) package and dock precisely.
+
+And for the University of Alberta emblem, we implemented a features matching algorithms (Fast key point detection and ORB descriptor) to match key points between the model emblem and an image frame. Once we got those matched key points, we calculate the pose data by using [solvePnP](http://docs.opencv.org/3.0-beta/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#solvepnp) function in openCV.
 
 Once those individual components are working, a main controller has been used to receive data from components and make final decisions based on those data like a general in an army. The decisions it makes usually are state translating decisions.
 
